@@ -13,7 +13,8 @@ function getData($query = "SELECT * FROM handphone ORDER BY nama_handphone ASC")
 }
 
 
-function insert($data){
+function insert($data)
+{
     global $koneksi;
 
     $id = mysqli_real_escape_string($koneksi, $data['kode']);
@@ -28,22 +29,23 @@ function insert($data){
 
 
     $sqlHp = "INSERT INTO handphone VALUES ('$id', '$nama', '$merk', '$harga', '$stock', '$warna','$storage', '$ram')";
-    
+
     mysqli_query($koneksi, $sqlHp);
     return mysqli_affected_rows($koneksi);
 }
 
-function delete($id){
+function delete($id)
+{
     global $koneksi;
 
-    $sqlDel = "DELETE FROM handphone WHERE id_handphone = '$id'";
+    $sqlDel = "DELETE FROM handphone WHERE id_handphone = $id";
     mysqli_query($koneksi, $sqlDel);
 
     return mysqli_affected_rows($koneksi);
-
 }
 
-function update ($data){
+function update($data)
+{
     global $koneksi;
 
     $id = mysqli_real_escape_string($koneksi, $data['kode']);
@@ -66,8 +68,4 @@ function update ($data){
                             WHERE id_handphone = '$id'
     ");
     return mysqli_affected_rows($koneksi);
-
 }
-
-
-?>
