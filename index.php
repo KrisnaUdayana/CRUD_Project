@@ -19,7 +19,7 @@ if ($msg == 'deleted') {
                 </div>';
     } else {
         $alert = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong strong>Alert!</strong> Handphone tidak berhasil dihapus
+                <strong>Alert!</strong> Handphone tidak berhasil dihapus
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>';
     }
@@ -28,7 +28,7 @@ if ($msg == 'deleted') {
 
 if ($msg == 'updated') {
     $alert = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong strong>Alert!</strong> Data handphone berhasi diedit
+                <strong>Alert!</strong> Data handphone berhasi diedit
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>';
 }

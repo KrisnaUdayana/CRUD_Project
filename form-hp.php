@@ -79,10 +79,12 @@ if (isset($_POST['simpan'])) {
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-8">
-
                                     <div class="mb-3">
                                         <label for="kode" class="form-label">Kode Handphone *</label>
-                                        <input type="text" name="kode" class="form-control" id="kode" value="<?= $msg != '' ? $hp['id_handphone'] : '' ?>" required>
+                                        <input type="number" name="kode" class="form-control" id="kode"
+                                            value="<?= $msg != '' ? $hp['id_handphone'] : '' ?>"
+                                            <?= $msg != '' ? 'readonly' : '' ?> required>
+                                        <span class="text-danger small" id="error-nama"></span>
                                     </div>
 
                                     <div class="mb-3">
@@ -194,9 +196,18 @@ if (isset($_POST['simpan'])) {
                     clearError(input, errorId);
 
                     if (field.type === 'text') {
-                        if (!/^[a-zA-Z\s]+$/.test(value)) {
-                            showError(input, errorId, `${field.label} hanya boleh huruf`);
-                            isValid = false;
+                        if (key === 'nama') {
+                            // Nama boleh huruf, angka, dan spasi
+                            if (!/^[a-zA-Z0-9\s]+$/.test(value)) {
+                                showError(input, errorId, `${field.label} hanya boleh huruf dan angka`);
+                                isValid = false;
+                            }
+                        } else {
+                            // Merk dan warna hanya boleh huruf dan spasi
+                            if (!/^[a-zA-Z\s]+$/.test(value)) {
+                                showError(input, errorId, `${field.label} hanya boleh huruf`);
+                                isValid = false;
+                            }
                         }
                     } else if (field.type === 'number') {
                         if (!/^\d+$/.test(value)) {
@@ -207,7 +218,7 @@ if (isset($_POST['simpan'])) {
                 }
 
                 if (!isValid) {
-                    e.preventDefault(); // Cegah kirim form
+                    e.preventDefault(); // Cegah submit form jika validasi gagal
                 }
             });
         });
